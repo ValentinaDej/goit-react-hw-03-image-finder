@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import axios from 'axios';
 
 import styles from './App.module.css';
 import Searchbar from './Searchbar/Searchbar';
