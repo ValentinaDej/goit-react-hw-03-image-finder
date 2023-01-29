@@ -9,7 +9,7 @@ const ImageGalleryItem = ({ webformatURL, showModalForm, largeImageURL }) => {
       >
         <img
           src={webformatURL}
-          alt=""
+          alt="alt"
           className={styles.ImageGalleryIteImage}
         />
       </li>
