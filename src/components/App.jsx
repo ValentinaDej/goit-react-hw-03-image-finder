@@ -5,7 +5,7 @@ import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Modal from '../shared/Modal/Modal';
 
-import { searchGallery } from '../shared/Services/galleryApi';
+import { searchGallery } from '../shared/Services/galleryApi.js';
 import Button from './Button/Button';
 import GalleryDetail from './GalleryDetail/GalleryDetail';
 
