@@ -9,7 +9,7 @@ const instance = axios.create({
 
 const apiKey = '31094893-91e9afbe8165d9cedcce56644';
 
-export const searchGallery = async (q, page = 1) => {
+const searchGallery = async (q, page = 1) => {
   const data = await instance.get('/', {
     params: {
       q,
@@ -22,3 +22,5 @@ export const searchGallery = async (q, page = 1) => {
 
   return data;
 };
+
+export default searchGallery;
