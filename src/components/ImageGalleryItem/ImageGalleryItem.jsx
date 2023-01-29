@@ -1,9 +1,12 @@
 import styles from './ImageGalleryItem.module.css';
 
-const ImageGalleryItem = ({ webformatURL }) => {
+const ImageGalleryItem = ({ webformatURL, showModalForm, largeImageURL }) => {
   return (
     <>
-      <li className={styles.ImageGalleryItem}>
+      <li
+        className={styles.ImageGalleryItem}
+        onClick={() => showModalForm({ largeImageURL })}
+      >
         <img
           src={webformatURL}
           alt=""

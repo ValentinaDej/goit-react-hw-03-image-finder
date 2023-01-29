@@ -4,42 +4,81 @@ import axios from 'axios';
 import styles from './App.module.css';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
+import Modal from '../shared/Modal/Modal';
 
-import { searchGallery } from '../shared/services/galleryApi';
+import { searchGallery } from '../shared/Services/galleryApi';
+import Button from './Button/Button';
+import GalleryDetail from './GalleryDetail/GalleryDetail';
+
 class App extends Component {
   state = {
     search: '',
     items: [],
     loading: false,
     error: null,
+    page: 1,
+    showModal: false,
+    galleryDetail: null,
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const { search } = this.state;
-    if (prevState.search !== search) {
+    const { search, page } = this.state;
+    if (prevState.search !== search || prevState.page !== page) {
       this.setState({ loading: true });
-      searchGallery(search)
-        .then(({ data }) => this.setState({ items: data.hits }))
-        .catch(error => this.setState({ error: error.message }))
-        .finally(() => this.setState({ loading: false }));
+      this.fetchGallery();
+    }
+  }
+
+  async fetchGallery() {
+    try {
+      const { search, page } = this.state;
+      const data = await searchGallery(search, page);
+      const hits = data.data.hits;
+      this.setState({ loading: true });
+      this.setState(({ items }) => ({ items: [...items, ...hits] }));
+    } catch (error) {
+      this.setState({ error: error.message });
+    } finally {
+      this.setState({ loading: false });
     }
   }
 
   getData = ({ search }) => {
-    console.log(search);
-    this.setState({ search });
+    this.setState({ search, items: [], page: 1 });
     return true;
   };
 
+  loadMore = () => {
+    this.setState(prevState => ({
+      page: prevState.page + 1,
+    }));
+  };
+
+  showModalForm = ({ largeImageURL }) => {
+    this.setState({ showModal: true, galleryDetail: largeImageURL });
+  };
+
+  closeModal = () => {
+    this.setState({ showModal: false, galleryDetail: null });
+  };
+
   render() {
-    const { getData } = this;
-    const { items, loading, error } = this.state;
+    const { getData, loadMore, showModalForm, closeModal } = this;
+    const { items, loading, error, showModal, galleryDetail } = this.state;
     return (
       <div className={styles.App}>
         <Searchbar onSubmit={getData} />
-        <ImageGallery items={items} />
+        <ImageGallery items={items} showModalForm={showModalForm} />
         {error && <p>{error}</p>}
         {loading && <p>Loading...</p>}
+        {Boolean(items.length) && (
+          <Button loadMore={loadMore} text="Load more" />
+        )}
+        {showModal && (
+          <Modal closeModal={closeModal}>
+            <GalleryDetail galleryDetail={galleryDetail} />
+          </Modal>
+        )}
       </div>
     );
   }
