@@ -27,6 +27,6 @@ ImageGallery.defaultProps = {
 };
 
 ImageGallery.propTypes = {
-  showModalForm: PropTypes.bool.isRequired,
+  showModalForm: PropTypes.func.isRequired,
   items: PropTypes.array,
 };
