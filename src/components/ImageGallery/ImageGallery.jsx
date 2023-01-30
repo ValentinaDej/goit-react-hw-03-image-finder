@@ -6,13 +6,14 @@ import styles from './ImageGallery.module.css';
 const ImageGallery = ({ items, showModalForm }) => {
   return (
     <ul className={styles.ImageGallery}>
-      {items.map(({ id, webformatURL, largeImageURL }) => {
+      {items.map(({ id, webformatURL, largeImageURL, tags }) => {
         return (
           <ImageGalleryItem
             key={id}
             webformatURL={webformatURL}
             largeImageURL={largeImageURL}
             showModalForm={showModalForm}
+            tags={tags}
           />
         );
       })}

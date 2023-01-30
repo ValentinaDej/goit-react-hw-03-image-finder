@@ -54,8 +54,8 @@ class App extends Component {
     }));
   };
 
-  showModalForm = ({ largeImageURL }) => {
-    this.setState({ showModal: true, galleryDetail: largeImageURL });
+  showModalForm = ({ largeImageURL, tags }) => {
+    this.setState({ showModal: true, galleryDetail: { largeImageURL, tags } });
   };
 
   closeModal = () => {
