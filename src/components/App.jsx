@@ -44,8 +44,12 @@ class App extends Component {
   }
 
   getData = ({ search }) => {
-    this.setState({ search, items: [], page: 1 });
-    return true;
+    const prevSearch = this.state.search;
+    if (prevSearch !== search) {
+      this.setState({ search, items: [], page: 1 });
+      return true;
+    }
+    return false;
   };
 
   loadMore = () => {
