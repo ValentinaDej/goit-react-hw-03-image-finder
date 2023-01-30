@@ -5,7 +5,7 @@ import styles from './App.module.css';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Modal from '../shared/Modal/Modal';
-import searchGallery from './Services/galleryApi';
+import searchGallery from '../shared/Services/galleryApi';
 import Button from './Button/Button';
 import GalleryDetail from './GalleryDetail/GalleryDetail';
 import Loader from './Loader/Loader';
