@@ -1,13 +1,14 @@
 import { Component } from 'react';
 
 import styles from './App.module.css';
+
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Modal from '../shared/Modal/Modal';
-
 import searchGallery from './Services/galleryApi';
 import Button from './Button/Button';
 import GalleryDetail from './GalleryDetail/GalleryDetail';
+import Loader from './Loader/Loader';
 
 class App extends Component {
   state = {
@@ -69,7 +70,7 @@ class App extends Component {
         <Searchbar onSubmit={getData} />
         <ImageGallery items={items} showModalForm={showModalForm} />
         {error && <p>{error}</p>}
-        {loading && <p>Loading...</p>}
+        {loading && <Loader />}
         {Boolean(items.length) && (
           <Button loadMore={loadMore} text="Load more" />
         )}

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styles from './GalleryDetail.module.css';
 
 const GalleryDetail = ({ galleryDetail }) => {
@@ -5,3 +7,7 @@ const GalleryDetail = ({ galleryDetail }) => {
 };
 
 export default GalleryDetail;
+
+GalleryDetail.propTypes = {
+  galleryDetail: PropTypes.string.isRequired,
+};

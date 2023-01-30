@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import styles from './ImageGallery.module.css';
 
@@ -22,4 +24,9 @@ export default ImageGallery;
 
 ImageGallery.defaultProps = {
   items: [],
+};
+
+ImageGallery.propTypes = {
+  showModalForm: PropTypes.bool.isRequired,
+  items: PropTypes.array,
 };
