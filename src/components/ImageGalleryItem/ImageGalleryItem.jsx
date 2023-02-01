@@ -9,18 +9,16 @@ const ImageGalleryItem = ({
   tags,
 }) => {
   return (
-    <>
-      <li
-        className={styles.ImageGalleryItem}
-        onClick={() => showModalForm({ largeImageURL, tags })}
-      >
-        <img
-          src={webformatURL}
-          alt={tags}
-          className={styles.ImageGalleryIteImage}
-        />
-      </li>
-    </>
+    <li
+      className={styles.ImageGalleryItem}
+      onClick={() => showModalForm({ largeImageURL, tags })}
+    >
+      <img
+        src={webformatURL}
+        alt={tags}
+        className={styles.ImageGalleryIteImage}
+      />
+    </li>
   );
 };
 
